@@ -5,9 +5,11 @@ function getRandomHexColor() {
 const controls = document.querySelector("div#controls");
 const input = controls.querySelector("input");
 const boxes = document.querySelector("div#boxes");
+let boxSize = 0;
 
 //Utwórz funkcję createBoxes(amount), która bierze jeden parametr - liczbę.
 //Funkcja tworzy tyle <div>, ile ukazano w amount i dodaje je do div#boxes
+
 function createBoxes(amount) {
   let markup = "";
 
@@ -15,8 +17,9 @@ function createBoxes(amount) {
     console.log(i);
     const boxColor = getRandomHexColor();
     markup += `<div style="background-color:${boxColor}; width: ${
-      30 + 10 * i
-    }px; height: ${30 + 10 * i}px;"></div>`;
+      30 + 10 * boxSize
+    }px; height: ${30 + 10 * boxSize}px;"></div>`;
+    boxSize += 1;
   }
   boxes.insertAdjacentHTML("beforeend", markup);
 }
@@ -26,6 +29,7 @@ function createBoxes(amount) {
 function destroyBoxes() {
   console.log("DESTROY");
   boxes.innerHTML = "";
+  boxSize = 0;
 }
 
 const clickHandler = (event) => {
